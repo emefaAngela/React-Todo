@@ -1,5 +1,25 @@
 import BG from "../images/bg.jpg";
+import { useState } from "react";
 const Home = () => {
+    // const addTodo=(name)=>{
+    //     // const obj = {};
+
+    //     const newTodo={id:"id",name,completed:false};
+    //     setTodo(Todo=>[...newTodo]);
+    // }
+    const [Todo, setTodo]=useState([]);
+    const [name,setName]=useState('');
+    const handleChange=(e)=>{
+        setName(e.target.value);
+    }
+    const handleSubmit=(e)=>{
+    e.preventDefault();
+    // addTodo(Todo);
+    setTodo(Todo=>[...Todo,name]);
+    setName("");
+    }
+    // let Todos=[];
+    console.log(Todo);
     return ( 
         <div className="bg-white w-full ">
             {/* image container */}
@@ -17,9 +37,14 @@ const Home = () => {
                 </div>
 
                 {/* Add todo container */}
-                <div className="bg-white rounded-small p-2 flex flex-row  w-3/4 mx-auto justify-between h-12   shadow-sm">
-                    <div className="text-gray-400 text-sm"> Add a new task here...</div>
-                   <div className="w-32 p-2 rounded-sm text-white text-sm bg-green-500 text-center">Add</div>
+                {/* < className=" rounded-small p-2 flex flex-row  w-3/4 mx-auto justify-between h-12   shadow-sm"> */}
+                    <div className=" bg-white rounded-small p-2 flex flex-row  w-3/4 mx-auto justify-between h-12   shadow-sm">
+                        <form onSubmit={handleSubmit} className="">
+                            <div className="flex w-3/4 justify-between space-x-96">
+                            <div><input type="text" onChange={handleChange} placeholder="Add a new task here..." value={name} className=" outline-0"/></div>
+                          <button onClick={handleSubmit}  className=" h-8  w-64 mx-4 rounded-sm text-white text-sm bg-green-300 text-center" type="submit">Add</button>
+                       </div>
+                     </form>
                 </div>
 
                 {/* todo list container */}
@@ -30,6 +55,7 @@ const Home = () => {
                         <div className="text-gray-400 text-sm">Followers</div>
                     </div>
                 </div>
+            
             </div>
             {/* home content */}
         </div>
