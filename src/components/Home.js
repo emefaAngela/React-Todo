@@ -7,9 +7,14 @@ const Home = () => {
     const handleChange=(e)=>{
         setName(e.target.value);
     }
+    let id=0;
     const handleSubmit=(e)=>{
     e.preventDefault();
-    setTodo(Todo=>[...Todo,name]);
+    Todo.push({
+        id: id++,
+        name: name,
+        completed:false
+    });
     setName("");
     }
    
@@ -42,10 +47,22 @@ const Home = () => {
                 </div>
 
                 {/* todo list container */}
-                <div className="w-3/4 mx-auto  flex flex-col-reverse shadow-lg mt-4 rounded-sm h-64 ">
-                    <div></div>
+                <div className="w-3/4 mx-auto  flex flex-col justify-between shadow-lg mt-4 rounded-sm h-64 ">
+                    <div>
+                        <ul className="mt-4 mx-2">
+                            {
+                                Todo.map(Todo=> (
+                                    <li key={Todo.id} className="text-black" >
+                                        {Todo.name}
+                                        {console.log(Todo.name)}
+                                    </li>
+                                ))
+                                
+                                }
+                        </ul>
+                    </div>
                     <div className="flex flex-row  justify-between p-2 ">
-                        <div className="text-gray-400 text-sm">0 tasks left</div>
+                        <div className="text-gray-400 text-sm">{Todo.length} tasks left</div>
                         <div className="text-gray-400 text-sm">Followers</div>
                     </div>
                 </div>
