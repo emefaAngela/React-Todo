@@ -1,12 +1,7 @@
 import BG from "../images/bg.jpg";
 import { useState } from "react";
 const Home = () => {
-    // const addTodo=(name)=>{
-    //     // const obj = {};
-
-    //     const newTodo={id:"id",name,completed:false};
-    //     setTodo(Todo=>[...newTodo]);
-    // }
+    
     const [Todo, setTodo]=useState([]);
     const [name,setName]=useState('');
     const handleChange=(e)=>{
@@ -14,11 +9,10 @@ const Home = () => {
     }
     const handleSubmit=(e)=>{
     e.preventDefault();
-    // addTodo(Todo);
     setTodo(Todo=>[...Todo,name]);
     setName("");
     }
-    // let Todos=[];
+   
     console.log(Todo);
     return ( 
         <div className="bg-white w-full ">
